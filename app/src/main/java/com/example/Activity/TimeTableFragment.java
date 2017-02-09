@@ -261,12 +261,27 @@ public class TimeTableFragment extends Fragment {
 
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                         Query chatsQuery = ref.child("chats").orderByChild("title").equalTo(roomName);
+                        Query memberQuery = ref.child("member").orderByChild(mStudent.getId()).equalTo("T");
 
                         chatsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 for(DataSnapshot chatsSnapshot : dataSnapshot.getChildren()) {
                                     chatsSnapshot.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        memberQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot memberSnapshot : dataSnapshot.getChildren()) {
+                                    memberSnapshot.getRef().removeValue();
                                 }
                             }
 
