@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    tools:context=".EditMemInfoFragment">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <TextView
+            android:text="현재 비밀번호"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset_Pw_Text_1"
+            android:gravity="center"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="특수문자 금지."
+            android:ems="10"
+            android:id="@+id/input_Current_Pw"
+            android:layout_weight="1"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <TextView
+            android:text="새 비밀번호"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset_Pw_Text_2"
+            android:gravity="center"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="특수문자 금지."
+            android:ems="10"
+            android:id="@+id/input_New_Pw"
+            android:layout_weight="1"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <TextView
+            android:text="새 비밀번호\n(재입력)"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/reset_Pw_Text_3"
+            android:gravity="center"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="특수문자 금지."
+            android:ems="10"
+            android:id="@+id/re_Input_New_Pw"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <Button
+            android:text="회원탈퇴"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_select"
+            android:id="@+id/unregister_Button" >
+        </Button>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="탈퇴 시 모든 정보가 삭제됩니다." >
+        </TextView>
+
+    </LinearLayout>
+
+    <Button
+        android:text="confirm"
+        android:layout_width="362dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_select"
+        android:id="@+id/submit_Edit" />
+
+    <Button
+        android:text="cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:onClick="cancel_Button"
+        android:background="@drawable/btn_select"
+        android:id="@+id/cancel_Edit" />
+
+</LinearLayout>

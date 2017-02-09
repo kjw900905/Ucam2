@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:text="color_Light_Red"
+        android:id="@+id/color_Light_Red"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:background="#FF6666"
+        android:layout_width="192dp"
+        android:onClick="clickLightRed" />
+
+    <TextView
+        android:text="color_Sky_Blue"
+        android:id="@+id/color_Sky_Blue"
+        android:background="#66FFFF"
+        android:layout_height="85dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/color_Light_Red"
+        android:layout_width="192dp"
+        android:onClick="clickSkyBlue" />
+
+    <TextView
+        android:text="color_Yellow_Green"
+        android:layout_width="192dp"
+        android:id="@+id/color_Yellow_Green"
+        android:layout_weight="0.07"
+        android:background="#00f000"
+        android:layout_height="85dp"
+        android:layout_below="@+id/color_Light_Red"
+        android:layout_alignParentStart="true"
+        android:onClick="clickYelloGreen" />
+
+    <TextView
+        android:text="color_Green"
+        android:layout_width="192dp"
+        android:id="@+id/color_Green"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:background="#00CC00"
+        android:layout_alignBaseline="@+id/color_Yellow_Green"
+        android:layout_alignBottom="@+id/color_Yellow_Green"
+        android:layout_alignParentEnd="true"
+        android:onClick="clickGreen" />
+
+    <TextView
+        android:text="color_Pink"
+        android:layout_width="192dp"
+        android:id="@+id/color_Pink"
+        android:layout_weight="0.07"
+        android:background="#FF00FF"
+        android:layout_height="85dp"
+        android:layout_alignBaseline="@+id/color_Dark_Brown"
+        android:layout_alignBottom="@+id/color_Dark_Brown"
+        android:layout_alignParentEnd="true"
+        android:onClick="clickPink" />
+
+    <TextView
+        android:text="color_Light_Brown"
+        android:layout_width="192dp"
+        android:id="@+id/color_Light_Brown"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:background="#CC9966"
+        android:layout_below="@+id/color_Yellow"
+        android:layout_alignParentEnd="true"
+        android:onClick="clickLightBrown" />
+
+    <TextView
+        android:text="color_Dark_Brown"
+        android:layout_width="192dp"
+        android:id="@+id/color_Dark_Brown"
+        android:layout_weight="0.07"
+        android:background="#663300"
+        android:layout_height="85dp"
+        android:layout_below="@+id/color_Light_Brown"
+        android:layout_alignParentStart="true"
+        android:onClick="clickDarkBrown" />
+
+    <TextView
+        android:text="color_Black"
+        android:layout_width="192dp"
+        android:id="@+id/color_Black"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:background="#000000"
+        android:layout_below="@+id/color_Light_Purple"
+        android:layout_alignParentStart="true"
+        android:onClick="clickBlack" />
+
+    <TextView
+        android:text="color_Dark_Orange"
+        android:layout_width="192dp"
+        android:id="@+id/color_Dark_Orange"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:background="#FF9900"
+        android:layout_below="@+id/color_Pink"
+        android:layout_alignParentStart="true"
+        android:onClick="clickDarkOrange" />
+
+    <TextView
+        android:text="color_Lime"
+        android:layout_width="192dp"
+        android:id="@+id/color_Lime"
+        android:background="#66FF99"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="clickLime" />
+
+    <TextView
+        android:text="color_Light_Purple"
+        android:layout_width="192dp"
+        android:id="@+id/color_Light_Purple"
+        android:layout_weight="0.07"
+        android:background="#CCCCFF"
+        android:layout_height="85dp"
+        android:layout_alignBaseline="@+id/color_Yellow"
+        android:layout_alignBottom="@+id/color_Yellow"
+        android:layout_alignParentStart="true"
+        android:onClick="clickLightPurple" />
+
+    <TextView
+        android:text="color_Yellow"
+        android:layout_width="192dp"
+        android:id="@+id/color_Yellow"
+        android:layout_weight="0.07"
+        android:layout_height="85dp"
+        android:background="#FFFA00"
+        android:layout_below="@+id/color_Green"
+        android:layout_alignParentEnd="true"
+        android:onClick="clickYello" />
+
+</RelativeLayout>

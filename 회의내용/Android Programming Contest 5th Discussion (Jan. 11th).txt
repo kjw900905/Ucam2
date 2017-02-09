@@ -1,0 +1,68 @@
+Android Programming Contest 5th Discussion (Jan. 11th, 2017)
+
+Program Name : U-Cam (Copyright NOT reserved)
+
+[1] Specific Outline
+
+------------------------------------------
+|
+|
+|
+|            U-Cam
+|
+|
+|   ID : __________
+|
+|   PW : ----------
+|
+|
+|
+|
+|   (Extra Contents: Find ID/PW or etc.)
+|
+|
+|
+|
+------------------------------------------
+
+시작 - 회원가입 - 아이디/비번 - 학교명 (데이터베이스 연동) - Extra Pop-Up (a.k.a finding address)
+
+회원가입은 학교명, 아이디, 학번, 비번, 이름, 이메일, 성별, SUBMIT 버튼
+
+회원가입 >> 로그인 화면 >> 로그인 후 화면 (시간표 등록)
+
+시간표 등록 (과목 정보를 입력)
+
+==============================Due : Jan. 22th================================================
+
+PART SEPERATION
+
+MENU / LOG IN : 정지우
+
+Register ID : 이주호
+
+Schduling : 김재우, 박선국
+
+
+예약 >> Bipartite Algorithm
+
+Event Processing >> Reserved contetns are being held
+
+게시판 UI
+
+DB연동
+
+
+** Extra Explanation will be held
+
+****** NEXT DISCUSSION ***********
+
+Jan. 14th 5:00 PM
+
+강남역 (세부 장소는 추후 결정)
+
+
+
+
+
+

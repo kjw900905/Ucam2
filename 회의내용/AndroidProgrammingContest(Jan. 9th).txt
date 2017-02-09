@@ -1,0 +1,39 @@
+Android Programming Contest 4th Discussion (Jan. 9th, 2017)
+
+Program Topic: Dating Application
+
+[1] General Outline
+
+1) Advertised by university's broadcasting system
+2) Matching the Lecture-Free students (********)
+3) Specific Qualifications
+4) Dating Types (Just For Friend, Boy/Girlfriend, etc.)
+5) Subject Schedules as References
+6) Chating System (As an extra)
+7) Advertising System (As a reference)
+8) Notice as an Alarm (SMS or Notice by the App itself)
+9) Flea Market (But, not strongly related)
+10) Secret Chating
+11) Premium Version
+
+
+[2] Source Code Requirements
+
+1) Bipartite Algorithm
+
+2) Android Programming (Similar to Java)
+
+3) Initialization (Registration)
+
+4) Suggesting Free-Lecture Time Leisure
+
+5) Notice For University Itself
+
+6) Categorizing the Contents
+
+
+[3] Notice for Next Discussion
+
+1) Wed. 5:00 PM (Jan. 11th)
+
+2) Must consider how to relate Aduino

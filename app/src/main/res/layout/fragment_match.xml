@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:id="@+id/btnMakeRoom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select"
+            android:gravity="center"
+            android:text="방만들기"
+            android:textStyle="bold" />
+
+        <Button
+            android:text="매칭"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnMatch"
+            android:background="@drawable/btn_select"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnParticipate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_select"
+            android:gravity="center"
+            android:text="참여하기"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="left">
+
+            <TextView
+                android:id="@+id/txtInterests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="관심분야"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtInterests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:hint="관심분야를 선택해주세요." />
+
+            <Button
+                android:id="@+id/btnInterests"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/btn_select"
+                android:gravity="center"
+                android:text="선택"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left">
+
+            <TextView
+                android:id="@+id/txtDetailInterests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="세부항목"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtDetailInterests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:hint="세부항목 선택해주세요." />
+
+            <Button
+                android:id="@+id/btnDetailInterests"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:background="@drawable/btn_select"
+                android:gravity="center"
+                android:text="선택"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="left">
+
+            <TextView
+                android:id="@+id/txtNumPeople"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="   인원   "
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtNumPeople"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:focusableInTouchMode="false"
+                android:gravity="left"
+                android:hint="인원을 선택해주세요." />
+
+            <Button
+                android:id="@+id/btnNumPeople"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:background="@drawable/btn_select"
+                android:gravity="center"
+                android:text="선택"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="방제"
+                android:layout_height="match_parent"
+                android:id="@+id/textRoomName"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_width="84dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:inputType="textPersonName"
+                android:hint="방 제목을 입력해 주세요."
+                android:id="@+id/setRoomName"
+                android:layout_height="50dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

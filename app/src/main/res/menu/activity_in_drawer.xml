@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_time_table"
+            android:icon="@drawable/ic_menu_time_table"
+            android:title="시간표 등록/수정" />
+        <item
+            android:id="@+id/nav_edit_mem_info"
+            android:icon="@drawable/ic_menu_edit_mem_info"
+            android:title="회원정보 수정" />
+        <item
+            android:id="@+id/nav_matching"
+            android:icon="@drawable/ic_menu_matching"
+            android:title="매칭" />
+        <item
+            android:id="@+id/nav_appointment"
+            android:icon="@drawable/ic_menu_appointment"
+            android:title="예약" />
+        <item
+            android:id="@+id/nav_preference"
+            android:icon="@drawable/ic_menu_preference"
+            android:title="관심분야" />
+        <item
+            android:id="@+id/nav_set_profile_image"
+            android:icon="@drawable/image_ddager"
+            android:title="프로필 사진 설정" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_menu_chat"
+            android:title="채팅" />
+        <item
+            android:id="@+id/nav_set_table_color"
+            android:icon="@drawable/ic_menu_chat"
+            android:title="색깔 설정" />
+    </group>
+
+</menu>

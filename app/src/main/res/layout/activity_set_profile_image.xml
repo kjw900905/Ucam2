@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <TextView
+        android:text="사진을 한장 골라주세요!"
+        android:textColor="#ff000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="프로필 사진"
+        android:textColor="#ff000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="36sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="프로필 사진 설정 완료"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_Select_Pic"
+        android:layout_marginTop="26dp"
+        android:id="@+id/btn_Set_Clear"
+        android:layout_alignEnd="@+id/btn_Select_Pic"
+        android:layout_alignStart="@+id/btn_Select_Pic"
+        android:background="@drawable/btn_select" />
+
+    <TextView
+        android:id="@+id/btn_Select_Pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사진 선택"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_below="@+id/profile_ImageView"
+        android:layout_alignStart="@+id/profile_ImageView"
+        android:background="@android:color/holo_blue_light"
+        android:layout_alignEnd="@+id/profile_ImageView" />
+
+    <ImageView
+        android:layout_height="173dp"
+        app:srcCompat="@drawable/image_ddager"
+        android:id="@+id/profile_ImageView"
+        android:layout_width="230dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

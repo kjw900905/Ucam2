@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Ucam</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="Interests">
+        <item>게임</item>
+        <item>식사</item>
+        <item>운동</item>
+        <item>전공</item>
+    </string-array>
+
+    <string-array name="DetailInterests_Game">
+        <item>히오스1</item>
+        <item>히오스2</item>
+        <item>히오스3</item>
+    </string-array>
+
+    <string-array name="DetailInterests_Meal">
+        <item>한식</item>
+        <item>양식</item>
+        <item>중식</item>
+        <item>일식</item>
+    </string-array>
+
+    <string-array name="DetailInterests_Exercise">
+        <item>축구</item>
+        <item>농구</item>
+        <item>수영</item>
+    </string-array>
+
+    <string-array name="DetailInterests_Major">
+        <item>컴퓨터</item>
+        <item>수학</item>
+        <item>영어</item>
+    </string-array>
+
+    <string-array name="NumPeople">
+        <item>2명</item>
+        <item>3명</item>
+        <item>4명</item>
+        <item>5명</item>
+        <item>6명</item>
+    </string-array>
+</resources>

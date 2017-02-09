@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 세로 -->
+        <TextView
+            android:id="@+id/time0"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:text=""
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time1"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="8"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time2"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="9"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time3"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="10"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time4"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="11"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time5"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="12"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time6"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="13"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time7"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="14"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time8"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="15"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time9"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="16"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time10"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="17"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time11"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="18"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+
+        <TextView
+            android:id="@+id/time12"
+            android:layout_width="35dp"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:text="19"
+            android:gravity="center_vertical|right"
+            android:textStyle="bold"
+            android:paddingRight="5dp"/>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 가로 -->
+            <TextView
+                android:id="@+id/monday"
+                android:layout_width="0px"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="월"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tuesday"
+                android:layout_width="0px"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="화"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/wednesday"
+                android:layout_width="0px"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="수"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/thursday"
+                android:layout_width="0px"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="목"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/friday"
+                android:layout_width="0px"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="금"
+                android:gravity="center"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <GridView
+                android:id="@+id/grid_timetable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:stretchMode="columnWidth"
+                android:numColumns="5"
+                android:verticalSpacing="1dp"
+                android:horizontalSpacing="1dp"
+                android:background="#777777"
+                android:scrollbarAlwaysDrawVerticalTrack="false"
+                android:scrollbarAlwaysDrawHorizontalTrack="false">
+            </GridView>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
