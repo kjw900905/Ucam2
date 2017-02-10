@@ -129,11 +129,11 @@ public class RealTimeMatching {
                                                         SimpleDateFormat df = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
                                                         String strDate = df.format(date);
 
-                                                        root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("isEnterRoom").setValue("F");
-                                                        root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("currentMemberNumber").setValue(list.size());
-                                                        root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("limitMemberNumber").setValue(list.size());
-                                                        root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("title").setValue(m_roomTitle + " " + m_Student.getId());
-                                                        root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("time").setValue(strDate);
+                                                        root.child("chats").child(m_roomTitle + " " + list.get(0)).child("isEnterRoom").setValue("F");
+                                                        root.child("chats").child(m_roomTitle + " " + list.get(0)).child("currentMemberNumber").setValue(list.size());
+                                                        root.child("chats").child(m_roomTitle + " " + list.get(0)).child("limitMemberNumber").setValue(list.size());
+                                                        root.child("chats").child(m_roomTitle + " " + list.get(0)).child("title").setValue(m_roomTitle + " " + list.get(0));
+                                                        root.child("chats").child(m_roomTitle + " " + list.get(0)).child("time").setValue(strDate);
 
                                                         roomEnterFlag = true;
 
@@ -178,6 +178,7 @@ public class RealTimeMatching {
                                                 intent.putExtra("user_id", m_Student.getId());
                                                 intent.putExtra("room_name", m_roomTitle);
                                                 m_activity.startActivity(intent);
+                                                Log.e("ss", "ss");
                                             }
                                         }
 
