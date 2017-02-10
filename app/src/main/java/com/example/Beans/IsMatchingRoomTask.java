@@ -31,19 +31,14 @@ public class IsMatchingRoomTask extends AsyncTask<String, Void, String> {
     private String m_DetailedInterests;
     private Student mStudent;
     private boolean isFindFlag;
-    private EditText m_EdtInterests; // "관심분야" EditText
-    private EditText m_EdtDetailInterests; // "세부항목" EditText
-    private EditText m_EdtNumPeople; // "인원" EditText
 
-    public IsMatchingRoomTask(String str_User_ID, Activity activity, String chattingNumber, String detailedInterests, Student student, EditText edtInterests, EditText edtDetailInterests, EditText edtNumPeople){
+
+    public IsMatchingRoomTask(String str_User_ID, Activity activity, String chattingNumber, String detailedInterests, Student student){
         m_str_User_ID = str_User_ID;
         m_activity = activity;
         m_ChattingNumber = chattingNumber;
         m_DetailedInterests = detailedInterests;
         mStudent = student;
-        m_EdtInterests = edtInterests;
-        m_EdtDetailInterests = edtDetailInterests;
-        m_EdtNumPeople = edtNumPeople;
     }
 
     /*ProgressDialog loading;
@@ -138,7 +133,7 @@ public class IsMatchingRoomTask extends AsyncTask<String, Void, String> {
             }
 
             if(!isFindFlag){
-                MatchingLodingTaskBar matchingLodingTaskBar = new MatchingLodingTaskBar(m_activity, m_ChattingNumber, m_DetailedInterests, mStudent, m_EdtInterests, m_EdtDetailInterests, m_EdtNumPeople);
+                MatchingLodingTaskBar matchingLodingTaskBar = new MatchingLodingTaskBar(m_activity, m_ChattingNumber, m_DetailedInterests, mStudent);
                 matchingLodingTaskBar.execute();
             }
         } catch (Exception exception) {
