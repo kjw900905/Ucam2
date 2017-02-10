@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.Beans.IsMatchingRoomTask;
 import com.example.Beans.RealTimeMatching;
 import com.example.Beans.Student;
 import com.example.Beans.Variable;
@@ -286,32 +287,7 @@ public class MatchFragment extends Fragment {
     }
 
     public void onClickMakeRoom(){
-/*
-        Calendar oCalendar = Calendar.getInstance();
-        int nowTime = oCalendar.get(Calendar.HOUR_OF_DAY);
-*/
         SelectOne(mStudent.getId());
-/*
-        if(TextUtils.isEmpty(edtNumPeople.getText()) || setRoomName.getText().toString().length() == 0){
-            Toast.makeText(getActivity(), "위 항목을 전부 채워주십시오.", Toast.LENGTH_SHORT).show();
-        }else{
-            ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
-            FragmentManager fragmentManager = myContext.getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_in, chatRoomFragment).addToBackStack(null).commit();
-
-            roomName = setRoomName.getText().toString();
-
-            makeRoomFlag = "Y";
-
-            Bundle bundle = new Bundle(1);
-            bundle.putSerializable("myInfo",mStudent);
-            bundle.putString("detailedInterests", detailedInterests);
-            bundle.putString("chattingNumber", chattingNumber);
-            bundle.putString("makeRoomFlag", makeRoomFlag);
-            bundle.putString("roomName", roomName);
-            chatRoomFragment.setArguments(bundle);
-        }
-        */
     }
 
     public void onClickMatchRoom() {
@@ -320,61 +296,8 @@ public class MatchFragment extends Fragment {
         if(detailedInterests == null && chattingNumber == null ){
             Toast.makeText(getContext(), "관심사항과 인원이 선택되지 않았습니다. 선택해주세요", Toast.LENGTH_SHORT).show();
         }else {
-            class LodingTaskBar extends AsyncTask<Void, Void, Void> {
-                ProgressDialog dialog;
-                private Activity m_activity;
-
-                public LodingTaskBar(Activity activity){
-                    m_activity = activity;
-                }
-
-                @Override
-                protected void onPreExecute() {
-                    //Log.e("sibal", "sibal");
-                    super.onPreExecute();
-                    dialog = new ProgressDialog(m_activity);
-                    dialog.setMessage("Loading...");
-                    dialog.setCancelable(true);
-                    dialog.setCanceledOnTouchOutside(false);
-                    dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener(){
-                        public void onClick(DialogInterface dialog, int which){
-                            dialog.cancel();
-                        }
-                    });
-                    dialog.show();
-                }
-
-                @Override
-                protected Void doInBackground(Void... params) {
-
-                    realTimeMatching.setChattingNumber(chattingNumber);
-                    realTimeMatching.setDetailedInterests(detailedInterests);
-                    realTimeMatching.setStudent(mStudent);
-                    realTimeMatching.setActivity(m_activity);
-                    realTimeMatching.setProgressDialog(dialog);
-                    realTimeMatching.insertMatchingId();
-
-                    return null;
-                }
-
-                protected void onPostExecute(String result) {
-
-                    //myJSON = result;
-                    //check_ID_PW();
-                }
-
-                @Override
-                protected void onCancelled() {
-                    //called on ui thread
-                    if (this.dialog != null) {
-                        this.dialog.dismiss();
-                    }
-                }
-            };
-
-            LodingTaskBar lodingTaskBar = new LodingTaskBar(this.getActivity());
-            lodingTaskBar.execute();
-
+            IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent);
+            isMatchingRoomTask.execute();
         }
     }
 

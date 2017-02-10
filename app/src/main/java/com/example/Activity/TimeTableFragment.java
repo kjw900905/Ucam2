@@ -675,5 +675,4 @@ public class TimeTableFragment extends Fragment {
         DeleteTask deleteTask = new DeleteTask();
         deleteTask.execute(str_ID, str_Day, str_Time, str_Position);
     }
-
 }
