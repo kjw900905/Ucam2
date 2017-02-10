@@ -17,11 +17,13 @@ public class RemoveMyTmpGroupId {
     private String m_DetailedInterests;                //관심분야
     private String m_ChattingNumber;          //채팅방 인원수
     private String m_RoomTitle;
+    private RealTimeMatching realTimeMatching;
 
     public RemoveMyTmpGroupId(Student student, String chattingNumber, String detailedInterests){
         m_Student = student;
         m_ChattingNumber = chattingNumber;
         m_DetailedInterests = detailedInterests;
+        realTimeMatching = new RealTimeMatching();
     }
 
     public void remove(){

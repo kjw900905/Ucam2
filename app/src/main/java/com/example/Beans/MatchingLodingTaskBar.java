@@ -48,6 +48,8 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
                 Toast.makeText(m_activity, "취소됨", Toast.LENGTH_SHORT).show();
                 RemoveMyTmpGroupId removeMyTmpGroupId = new RemoveMyTmpGroupId(mStudent, m_ChattingNumber, m_DetailedInterests);
                 removeMyTmpGroupId.remove();
+                realTimeMatching.setDetailedInterests("");
+                realTimeMatching.setChattingNumber("");
                 m_EdtInterests.setText("");
                 m_EdtDetailInterests.setText("");
                 m_EdtNumPeople.setText("");
