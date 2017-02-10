@@ -137,7 +137,7 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("time").setValue(strDate);
 
                                                         Intent intent = new Intent(m_activity, ChatActivity.class);
-                                                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP );
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                         intent.putExtra("user_id", m_Student.getId());
                                                         intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
                                                         m_activity.startActivity(intent);
