@@ -31,7 +31,7 @@ public class ClickParticipate {
         FragmentManager fragmentManager = m_MyContext.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_in, chatRoomFragment).addToBackStack(null).commit();
 
-        m_MakeRoomFlag = "N";
+        //m_MakeRoomFlag = "N";
 
         Bundle bundle = new Bundle(1);
         bundle.putSerializable("myInfo",mStudent);

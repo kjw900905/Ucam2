@@ -160,7 +160,7 @@ public class ChatRoomFragment extends Fragment {
         }
 
         if (m_detailedInterestsFlag.equals("Y") && m_detailedInterestsMemberNumberFlag.equals("N")) {
-            root.addListenerForSingleValueEvent(new ValueEventListener() {
+            root.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -218,7 +218,7 @@ public class ChatRoomFragment extends Fragment {
                 }
             });
         } else if (m_detailedInterestsFlag.equals("Y") && m_detailedInterestsMemberNumberFlag.equals("Y")) {
-            root.addListenerForSingleValueEvent(new ValueEventListener() {
+            root.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -276,7 +276,7 @@ public class ChatRoomFragment extends Fragment {
                 }
             });
         } else {
-            root.addListenerForSingleValueEvent(new ValueEventListener() {
+            root.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
