@@ -37,11 +37,8 @@ public class RealTimeMatching {
     private HashMap<String, String> idList;
     private ArrayList list;
     private Activity m_activity;
-    private boolean roomEnterFlag;
-    private String m_roomTitle2;
 
     public RealTimeMatching() {
-        roomEnterFlag = false;
         idList = new HashMap<String, String>();
     }
 
@@ -142,6 +139,14 @@ public class RealTimeMatching {
                                                         intent.putExtra("user_id", m_Student.getId());
                                                         intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
                                                         m_activity.startActivity(intent);
+
+                                                        m_otherPersonIdDetailedTnterests = "";
+                                                        m_otherPersonIdChattingNumber = 0;
+                                                        m_otherPersonId = "";
+                                                        m_roomTitle = "";
+                                                         roomPeopleNumber = 0;
+                                                        idList.clear();
+                                                        list.clear();
 
                                                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                                         Query querytmpConditionEquals = ref.child("tmpConditionEquals").child(m_roomTitle);
