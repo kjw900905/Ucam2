@@ -5,6 +5,7 @@ package com.example.Beans;
  */
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class RealTimeMatching {
     private HashMap<String, String> idList;
     private ArrayList list;
     private Activity m_activity;
+    private ProgressDialog m_progressDialog;
 
     public RealTimeMatching() {
         idList = new HashMap<String, String>();
@@ -72,6 +74,14 @@ public class RealTimeMatching {
 
     public Activity getActivity(){
         return m_activity;
+    }
+
+    public void setProgressDialog(ProgressDialog progressDialog){
+        m_progressDialog = progressDialog;
+    }
+
+    public ProgressDialog getProgressDialog(){
+        return m_progressDialog;
     }
 
     public void insertMatchingId() {
@@ -134,6 +144,8 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("title").setValue(m_roomTitle + " " + list.get(0));
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("time").setValue(strDate);
 
+                                                        m_progressDialog.dismiss();
+
                                                         Intent intent = new Intent(m_activity, ChatActivity.class);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                         intent.putExtra("user_id", m_Student.getId());
@@ -175,7 +187,7 @@ public class RealTimeMatching {
                                                             }
                                                         });
 
-                                                        m_ChattingNumber = "";
+                                                        m_ChattingNumber = "0";
                                                         m_otherPersonIdDetailedTnterests = "";
                                                         m_otherPersonIdChattingNumber = 0;
                                                         m_otherPersonId = "";
@@ -186,12 +198,10 @@ public class RealTimeMatching {
 
                                                         Log.e("zkzk", m_DetailedInterests);
                                                         Log.e("zaza", m_ChattingNumber);
-                                                        Log.e("zcvb2", null);
                                                         Log.e("zcvb", "ssssibal");
                                                     }
                                                 }
                                             }
-
                                         }
 
                                         @Override

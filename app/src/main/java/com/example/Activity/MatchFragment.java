@@ -1,7 +1,9 @@
 package com.example.Activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +79,7 @@ public class MatchFragment extends Fragment {
     private boolean isFindFlag, isTitleExist, isRoomExist;
 
     private RealTimeMatching realTimeMatching;
+    JSONArray person = null;
 
     public void MatchFragment() {
         // null
@@ -316,11 +320,96 @@ public class MatchFragment extends Fragment {
         if(detailedInterests == null && chattingNumber == null ){
             Toast.makeText(getContext(), "관심사항과 인원이 선택되지 않았습니다. 선택해주세요", Toast.LENGTH_SHORT).show();
         }else {
-            realTimeMatching.setChattingNumber(chattingNumber);
-            realTimeMatching.setDetailedInterests(detailedInterests);
-            realTimeMatching.setStudent(mStudent);
-            realTimeMatching.setActivity(this.getActivity());
-            realTimeMatching.insertMatchingId();
+            class LodingTaskBar extends AsyncTask<Void, Void, Void> {
+                ProgressDialog dialog;
+                private Activity m_activity;
+
+                public LodingTaskBar(Activity activity){
+                    m_activity = activity;
+                }
+
+                @Override
+                protected void onPreExecute() {
+                    //Log.e("sibal", "sibal");
+                    super.onPreExecute();
+                    dialog = new ProgressDialog(m_activity);
+                    dialog.setMessage("Loading...");
+                    dialog.setCancelable(true);
+                    dialog.setCanceledOnTouchOutside(false);
+                    dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int which){
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
+                }
+
+                @Override
+                protected Void doInBackground(Void... params) {
+
+                    realTimeMatching.setChattingNumber(chattingNumber);
+                    realTimeMatching.setDetailedInterests(detailedInterests);
+                    realTimeMatching.setStudent(mStudent);
+                    realTimeMatching.setActivity(m_activity);
+                    realTimeMatching.setProgressDialog(dialog);
+                    realTimeMatching.insertMatchingId();
+
+                    return null;
+                }
+
+                protected void onPostExecute(String result) {
+
+                    //myJSON = result;
+                    //check_ID_PW();
+                }
+
+                @Override
+                protected void onCancelled() {
+                    //called on ui thread
+                    if (this.dialog != null) {
+                        this.dialog.dismiss();
+                    }
+                }
+            };
+
+            LodingTaskBar lodingTaskBar = new LodingTaskBar(this.getActivity());
+            lodingTaskBar.execute();
+
+        }
+    }
+
+    public void check_ID_PW(){
+        try {
+            JSONObject jsonObj = new JSONObject(myJSON);
+            person = jsonObj.getJSONArray("result");
+
+            if(person.optString(0, "false").equals("false")) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.setMessage("아이디, 비밀번호를 확인하십시오.");
+                alert.show();
+            } else {
+                JSONObject c = person.getJSONObject(0);
+
+                String name = c.getString("name");
+                String id = c.getString("id");
+                String password = c.getString("password");
+                String studentNumber = c.getString("studentNumber");
+                String schoolName = c.getString("schoolName");
+                String gender = c.getString("gender");
+
+                /*Intent intent = new Intent(getApplicationContext(), InActivity.class);
+                intent.putExtra("myInfo", new Student(name, id, password, studentNumber, schoolName, gender));
+                finish();
+                startActivity(intent);*/
+            }
+        } catch(Exception exception) {
+            exception.printStackTrace();
         }
     }
 
