@@ -138,7 +138,7 @@ public class RealTimeMatching {
                                                         idList.put(idChild.getKey(), idChild.getKey());
                                                     }
 
-                                                    if(roomPeopleNumber == Integer.parseInt(m_ChattingNumber)){
+                                                    if(idList.size() == Integer.parseInt(m_ChattingNumber)){
                                                         list = new ArrayList<>(idList.keySet());
                                                         //root.child("chats").child(m_roomTitle).
 
