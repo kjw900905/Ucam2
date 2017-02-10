@@ -83,7 +83,6 @@ public class ChatRoomFragment extends Fragment {
         m_detailedInterestsFlag = getArguments().getString("detailedInterestsFlag");
         m_detailedInterestsMemberNumberFlag = getArguments().getString("detailedInterestsMemberNumberFlag");
 
-
         //Toast.makeText(getActivity(), m_detailedInterests+m_chattingNumber, Toast.LENGTH_SHORT).show();
         //room_name = (EditText) view.findViewById(R.id.room_name_edittext);
         adapter = new ChatRoomArrayAdapter(getContext(), R.layout.list_item_chat_room, list_of_rooms);
