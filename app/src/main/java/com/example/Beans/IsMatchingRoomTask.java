@@ -32,7 +32,6 @@ public class IsMatchingRoomTask extends AsyncTask<String, Void, String> {
     private Student mStudent;
     private boolean isFindFlag;
 
-
     public IsMatchingRoomTask(String str_User_ID, Activity activity, String chattingNumber, String detailedInterests, Student student){
         m_str_User_ID = str_User_ID;
         m_activity = activity;
@@ -51,7 +50,7 @@ public class IsMatchingRoomTask extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String[] params) {
         String temp_ID = m_str_User_ID;
-        Log.e("log222", temp_ID);
+        //Log.e("log222", temp_ID);
 
         try {
             String data = "";

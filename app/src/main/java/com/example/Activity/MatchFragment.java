@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.Beans.ClickParticipate;
 import com.example.Beans.IsMakeRoomTask;
 import com.example.Beans.IsMatchingRoomTask;
 import com.example.Beans.RealTimeMatching;
@@ -305,67 +306,9 @@ public class MatchFragment extends Fragment {
         }
     }
 
-    public void check_ID_PW(){
-        try {
-            JSONObject jsonObj = new JSONObject(myJSON);
-            person = jsonObj.getJSONArray("result");
-
-            if(person.optString(0, "false").equals("false")) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                alert.setMessage("아이디, 비밀번호를 확인하십시오.");
-                alert.show();
-            } else {
-                JSONObject c = person.getJSONObject(0);
-
-                String name = c.getString("name");
-                String id = c.getString("id");
-                String password = c.getString("password");
-                String studentNumber = c.getString("studentNumber");
-                String schoolName = c.getString("schoolName");
-                String gender = c.getString("gender");
-
-                /*Intent intent = new Intent(getApplicationContext(), InActivity.class);
-                intent.putExtra("myInfo", new Student(name, id, password, studentNumber, schoolName, gender));
-                finish();
-                startActivity(intent);*/
-            }
-        } catch(Exception exception) {
-            exception.printStackTrace();
-        }
-    }
-
     public void onClickParticipate(){
-        ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
-        FragmentManager fragmentManager = myContext.getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_in, chatRoomFragment).addToBackStack(null).commit();
-
-        makeRoomFlag = "N";
-
-        Bundle bundle = new Bundle(1);
-        bundle.putSerializable("myInfo",mStudent);
-        bundle.putString("detailedInterests", detailedInterests);
-        bundle.putString("chattingNumber", chattingNumber);
-        bundle.putString("makeRoomFlag", makeRoomFlag);
-
-        if(detailedInterests == null) {
-            bundle.putString("detailedInterestsFlag", "N");
-        } else {
-            bundle.putString("detailedInterestsFlag", "Y");
-        }
-
-        if(chattingNumber == null) {
-            bundle.putString("detailedInterestsMemberNumberFlag", "N");
-        } else {
-            bundle.putString("detailedInterestsMemberNumberFlag", "Y");
-        }
-
-        chatRoomFragment.setArguments(bundle);
+        ClickParticipate clickParticipate = new ClickParticipate(makeRoomFlag, myContext, mStudent, detailedInterests, chattingNumber);
+        clickParticipate.clickParticipate();
     }
 
     // 체크 표시가 되어 있는 항목의 value를 구하기 위해 사용하는 메소드
@@ -429,80 +372,15 @@ public class MatchFragment extends Fragment {
         builder.show();
     }
 
-    public void UpdateSearch(String strInterests, String strNumPeople) {
-        class UpdateSearchTask extends AsyncTask<String, Void, String> {
-            /*
-            ProgressDialog loading;
-
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(MainActivity.this, "Please Wait", null, true, true);
-            }
-            */
-
-            protected String doInBackground(String[] params) {
-                // 파라미터를 받아오는 부분
-                String strInterests = (String) params[0];
-                String strNumPeople = (String) params[1];
-
-                try {
-                    // 서버에 넘겨주기 위한 데이터를 서버에서 읽을 수 있는 내용으로 인코딩하는 작업
-                    String data = "";
-                    data += URLEncoder.encode("interests", "UTF-8") + "=" + URLEncoder.encode(strInterests, "UTF-8");
-                    data += "&" + URLEncoder.encode("numpeople", "UTF-8") + "=" + URLEncoder.encode(strNumPeople, "UTF-8");
-
-                    // 서버와 연결을 시도하는 부분
-                    URL url = new URL(Variable.m_SERVER_URL + Variable.m_PHP_UPDATE_SEARCH);
-                    URLConnection con = url.openConnection();
-
-                    // 서버로 전달하는 데이터가 있는 경우에 outputstream을 이용하는 부분
-                    con.setDoOutput(true);
-                    OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-
-                    wr.write(data);
-                    wr.flush();
-
-                    // 서버 연결 후 데이터를 가져오는 부분이 있을때 사용하는 코드
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                    StringBuilder sb = new StringBuilder();
-                    String line = null;
-
-                    // Read Server Response
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line);
-                        break;
-                    }
-
-                    // onPostExecute 부분으로 스트링을 전달함
-                    return sb.toString().trim();
-                } catch (Exception exception) {
-                    return new String(exception.getMessage());
-                }
-            }
-
-            /*
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-            }
-            */
-        }
-
-        UpdateSearchTask updateSearchTask = new UpdateSearchTask();
-        updateSearchTask.execute(strInterests, strNumPeople);
-    }
-
     public void SelectOne(String str_User_ID) {
         IsMakeRoomTask isMakeRoomTask = new IsMakeRoomTask(str_User_ID, getActivity(), chattingNumber, detailedInterests, mStudent, edtNumPeople, setRoomName, mReservationFlag, roomName, myContext,
                 makeRoomFlag);
 
         isMakeRoomTask.execute();
 
-        edtInterests.setText("");
+        /*edtInterests.setText("");
         edtDetailInterests.setText("");
-        edtNumPeople.setText("");
+        edtNumPeople.setText("");*/
 
         //detailedInterests = "";
         //chattingNumber = "";

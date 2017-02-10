@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by kjw90 on 2017-02-11.
@@ -17,7 +19,6 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
     private String m_ChattingNumber;
     private String m_DetailedInterests;
     private Student mStudent;
-
 
     public MatchingLodingTaskBar(Activity activity, String chattingNumber, String detailedInterests, Student student){
         m_activity = activity;
@@ -38,7 +39,7 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
         dialog.setCanceledOnTouchOutside(false);
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which){
-                dialog.cancel();
+                Toast.makeText(m_activity, "취소됨", Toast.LENGTH_SHORT).show();
             }
         });
         dialog.show();
@@ -59,6 +60,8 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
 
     protected void onPostExecute(String result) {
 
+        //Toast.makeText(m_activity, "취소됨", Toast.LENGTH_SHORT).show();
+        //dialog.dismiss();
         //myJSON = result;
         //check_ID_PW();
     }
@@ -66,8 +69,6 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
     @Override
     protected void onCancelled() {
         //called on ui thread
-        if (this.dialog != null) {
-            this.dialog.dismiss();
-        }
+
     }
 };

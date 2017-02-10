@@ -99,9 +99,10 @@ public class RealTimeMatching {
                 //root.child("temp").setValue("T");
                 for (DataSnapshot tmpMatchingGroupIdChild : dataSnapshot.getChildren()) {
                     if (!tmpMatchingGroupIdChild.getKey().equals(m_Student.getId())) {
-                        m_otherPersonId = tmpMatchingGroupIdChild.getKey();
+                        m_otherPersonId = "";
                         m_otherPersonIdDetailedTnterests = "";
                         m_otherPersonIdChattingNumber = 0;
+                        m_otherPersonId = tmpMatchingGroupIdChild.getKey();
                         reFindIdList.get(m_otherPersonId);
                         reFindIDArrayList = new ArrayList<>(reFindIdList.keySet());
 
