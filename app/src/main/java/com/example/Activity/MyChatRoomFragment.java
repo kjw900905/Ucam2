@@ -49,7 +49,7 @@ public class MyChatRoomFragment extends Fragment {
         root.child("temp").setValue("T");
 
         Toast.makeText(getContext(), "채팅방 확인", Toast.LENGTH_SHORT).show();
-        //
+
         root.child("chats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
