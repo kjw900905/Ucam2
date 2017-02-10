@@ -177,7 +177,7 @@ public class RealTimeMatching {
                                             if(roomEnterFlag) {
                                                 Intent intent = new Intent(m_activity, ChatActivity.class);
                                                 intent.putExtra("user_id", m_Student.getId());
-                                                intent.putExtra("room_name", m_roomTitle);
+                                                intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
                                                 m_activity.startActivity(intent);
                                                 Log.e("ss", "ss");
                                             }
