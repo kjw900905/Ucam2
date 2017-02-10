@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.Activity.ChatActivity;
@@ -39,9 +40,15 @@ public class RealTimeMatching {
     private ArrayList list;
     private Activity m_activity;
     private ProgressDialog m_progressDialog;
+    private EditText m_EdtInterests; // "관심분야" EditText
+    private EditText m_EdtDetailInterests; // "세부항목" EditText
+    private EditText m_EdtNumPeople; // "인원" EditText
 
-    public RealTimeMatching() {
+    public RealTimeMatching(EditText edtInterests, EditText edtDetailInterests, EditText edtNumPeople) {
         idList = new HashMap<String, String>();
+        m_EdtInterests = edtInterests;
+        m_EdtDetailInterests = edtDetailInterests;
+        m_EdtNumPeople = edtNumPeople;
     }
 
     public void setDetailedInterests(String detailedInterests) {
@@ -137,6 +144,10 @@ public class RealTimeMatching {
                                                         Date date = rightNow.getTime();
                                                         SimpleDateFormat df = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
                                                         String strDate = df.format(date);
+
+                                                        m_EdtInterests.setText("");
+                                                        m_EdtDetailInterests.setText("");
+                                                        m_EdtNumPeople.setText("");
 
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("isEnterRoom").setValue("F");
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("currentMemberNumber").setValue(list.size());

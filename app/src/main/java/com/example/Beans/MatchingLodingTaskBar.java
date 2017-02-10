@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.widget.EditText;
 
 /**
  * Created by kjw90 on 2017-02-11.
@@ -16,13 +17,19 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
     private String m_ChattingNumber;
     private String m_DetailedInterests;
     private Student mStudent;
+    private EditText m_EdtInterests; // "관심분야" EditText
+    private EditText m_EdtDetailInterests; // "세부항목" EditText
+    private EditText m_EdtNumPeople; // "인원" EditText
 
-    public MatchingLodingTaskBar(Activity activity, String chattingNumber, String detailedInterests, Student student){
+    public MatchingLodingTaskBar(Activity activity, String chattingNumber, String detailedInterests, Student student, EditText edtInterests, EditText edtDetailInterests, EditText edtNumPeople){
         m_activity = activity;
-        realTimeMatching = new RealTimeMatching();
+        realTimeMatching = new RealTimeMatching(m_EdtInterests, m_EdtDetailInterests, m_EdtNumPeople);
         m_ChattingNumber = chattingNumber;
         m_DetailedInterests = detailedInterests;
         mStudent = student;
+        m_EdtInterests = edtInterests;
+        m_EdtDetailInterests = edtDetailInterests;
+        m_EdtNumPeople = edtNumPeople;
     }
 
     @Override

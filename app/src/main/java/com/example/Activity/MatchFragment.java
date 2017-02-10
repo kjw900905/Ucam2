@@ -80,7 +80,7 @@ public class MatchFragment extends Fragment {
 
     private boolean isFindFlag, isTitleExist, isRoomExist;
 
-    private RealTimeMatching realTimeMatching;
+    //private RealTimeMatching realTimeMatching;
     JSONArray person = null;
 
     public void MatchFragment() {
@@ -103,8 +103,6 @@ public class MatchFragment extends Fragment {
         edtDetailInterests = (EditText) view.findViewById(R.id.edtDetailInterests); // "세부항목" EditText
         edtNumPeople = (EditText) view.findViewById(R.id.edtNumPeople); // "인원" EditText
         setRoomName = (EditText)view.findViewById(R.id.setRoomName);
-
-        realTimeMatching = new RealTimeMatching();
 
         makeRoomFlag = "N";
         mReservationFlag = "N";
@@ -297,7 +295,7 @@ public class MatchFragment extends Fragment {
         if(detailedInterests == null && chattingNumber == null ){
             Toast.makeText(getContext(), "관심사항과 인원이 선택되지 않았습니다. 선택해주세요", Toast.LENGTH_SHORT).show();
         }else {
-            IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent);
+            IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent, edtInterests, edtDetailInterests, edtNumPeople);
             isMatchingRoomTask.execute();
         }
     }
@@ -493,6 +491,7 @@ public class MatchFragment extends Fragment {
     public void SelectOne(String str_User_ID) {
         IsMakeRoomTask isMakeRoomTask = new IsMakeRoomTask(str_User_ID, getActivity(), chattingNumber, detailedInterests, mStudent, edtNumPeople, setRoomName, mReservationFlag, roomName, myContext,
                 makeRoomFlag);
+
         isMakeRoomTask.execute();
     }
 }
