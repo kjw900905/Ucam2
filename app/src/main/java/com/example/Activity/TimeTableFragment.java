@@ -260,13 +260,44 @@ public class TimeTableFragment extends Fragment {
                         String roomName = Variable.reservationRoomName.getString(selected_Position);
 
                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        Query chatsQuery = ref.child("chats").orderByChild("title").equalTo(roomName);
+                        Query chatsQuery = ref.child("chats").child(roomName);
+                        Query memberQuery = ref.child("member").child(roomName);
+                        Query messageQuery = ref.child("message").child(roomName);
+
 
                         chatsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 for(DataSnapshot chatsSnapshot : dataSnapshot.getChildren()) {
                                     chatsSnapshot.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        memberQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot memberSnapshot : dataSnapshot.getChildren()) {
+                                    memberSnapshot.getRef().removeValue();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        messageQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
+                                    messageSnapshot.getRef().removeValue();
                                 }
                             }
 

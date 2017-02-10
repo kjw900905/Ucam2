@@ -623,8 +623,6 @@ public class MatchFragment extends Fragment {
                             });
 
                         } else {
-                            Toast.makeText(getActivity(), "else 부분", Toast.LENGTH_SHORT).show();
-
                             isRoomExist = false;
 
                             roomName = setRoomName.getText().toString();
