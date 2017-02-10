@@ -86,6 +86,9 @@ public class RealTimeMatching {
                     if (!tmpMatchingGroupIdChild.getKey().equals(m_Student.getId())) {
                         m_otherPersonId = tmpMatchingGroupIdChild.getKey();
 
+                        m_DetailedInterests = root.child("tmpMatchingGroupId").child(m_Student.getId()).child("detailedInterests").setValue(m_DetailedInterests).toString();
+                        m_ChattingNumber = root.child("tmpMatchingGroupId").child(m_Student.getId()).child("chattingNumber").setValue(m_ChattingNumber).toString();
+
                         for (DataSnapshot idChild : tmpMatchingGroupIdChild.getChildren()) {
                             if (idChild.getKey().equals("detailedInterests")) {
                                 m_otherPersonIdDetailedTnterests = idChild.getValue().toString();
