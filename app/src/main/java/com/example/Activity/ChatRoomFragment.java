@@ -160,8 +160,6 @@ public class ChatRoomFragment extends Fragment {
             }
         }
 
-
-
         if (m_detailedInterestsFlag.equals("Y") && m_detailedInterestsMemberNumberFlag.equals("N")) {
             root.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
