@@ -106,8 +106,8 @@ public class RealTimeMatching {
                         for(int i=0; i<reFindIDArrayList.size(); i++){
                             if(!reFindIDArrayList.get(i).toString().equals(m_otherPersonId)){
                                 reFindIDArrayList.add(m_otherPersonId);
-                                Log.e("sibal", reFindIDArrayList.get(i).toString());
                             }
+                            Log.e("sibal", reFindIDArrayList.get(i).toString());
                         }
 
                         for (DataSnapshot idChild : tmpMatchingGroupIdChild.getChildren()) {
