@@ -37,8 +37,10 @@ public class RealTimeMatching {
     private HashMap<String, String> idList;
     private ArrayList list;
     private Activity m_activity;
+    private boolean roomEnterFlag;
 
     public RealTimeMatching() {
+        roomEnterFlag = false;
         idList = new HashMap<String, String>();
     }
 
@@ -133,10 +135,7 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("title").setValue(m_roomTitle + " " + m_Student.getId());
                                                         root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("time").setValue(strDate);
 
-                                                        Intent intent = new Intent(m_activity, ChatActivity.class);
-                                                        intent.putExtra("user_id", m_Student.getId());
-                                                        intent.putExtra("room_name", m_roomTitle);
-                                                        m_activity.startActivity(intent);
+                                                        roomEnterFlag = true;
 
                                                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                                         Query querytmpConditionEquals = ref.child("tmpConditionEquals").child(m_roomTitle);
@@ -174,15 +173,20 @@ public class RealTimeMatching {
                                                     }
                                                 }
                                             }
+                                            if(roomEnterFlag) {
+                                                Intent intent = new Intent(m_activity, ChatActivity.class);
+                                                intent.putExtra("user_id", m_Student.getId());
+                                                intent.putExtra("room_name", m_roomTitle);
+                                                m_activity.startActivity(intent);
+                                            }
                                         }
 
                                         @Override
                                         public void onCancelled(DatabaseError databaseError) {
 
                                         }
-                                    });
 
-                                    root.child("Tmp2").setValue("T");
+                                    });
                                 }
                             }
                         }
@@ -195,8 +199,6 @@ public class RealTimeMatching {
 
             }
         });
-
-
     }
 
 }
