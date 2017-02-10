@@ -18,7 +18,7 @@ public class RealTimeMatching {
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tmpConditionEquals = FirebaseDatabase.getInstance().getReference().child("tmpConditionEquals");
     private Student m_Student;
-    private int m_otherPersonIdDetailedTnterests;
+    private String m_otherPersonIdDetailedTnterests;
     private int m_otherPersonIdChattingNumber;
     private String m_otherPersonId;
     private String m_roomTitle;
@@ -66,13 +66,13 @@ public class RealTimeMatching {
 
                         for(DataSnapshot idChild : tmpMatchingGroupIdChild.getChildren()){
                             if(idChild.getKey().equals("detailedInterests")){
-                                m_otherPersonIdDetailedTnterests = Integer.parseInt(idChild.getValue().toString());
+                                m_otherPersonIdDetailedTnterests = idChild.getValue().toString();
                             }
                             if(idChild.getKey().equals("chattingNumber")){
                                 m_otherPersonIdChattingNumber = Integer.parseInt(idChild.getValue().toString());
                             }
 
-                            if(m_otherPersonIdDetailedTnterests == Integer.parseInt(m_DetailedInterests) && m_otherPersonIdChattingNumber == Integer.parseInt(m_ChattingNumber)){
+                            if(m_otherPersonIdDetailedTnterests.equals(m_DetailedInterests) && m_otherPersonIdChattingNumber == Integer.parseInt(m_ChattingNumber)){
                                 m_roomTitle = m_DetailedInterests + "," + m_ChattingNumber;
                                 root.child("tmpConditionEquals").child(m_roomTitle).child(m_Student.getId()).setValue("T");
                                 root.child("tmpConditionEquals").child(m_roomTitle).child(m_otherPersonId).setValue("T");
