@@ -81,7 +81,7 @@ public class RealTimeMatching {
         root.child("tmpMatchingGroupId").child(m_Student.getId()).child("detailedInterests").setValue(m_DetailedInterests);
         root.child("tmpMatchingGroupId").child(m_Student.getId()).child("chattingNumber").setValue(m_ChattingNumber);
 
-        root.child("tmpMatchingGroupId").addValueEventListener(new ValueEventListener() {
+        root.child("tmpMatchingGroupId").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //root.child("temp").setValue("T");
