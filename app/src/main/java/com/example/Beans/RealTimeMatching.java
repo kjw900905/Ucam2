@@ -38,6 +38,7 @@ public class RealTimeMatching {
     private ArrayList list;
     private Activity m_activity;
     private boolean roomEnterFlag;
+    private String m_roomTitle2;
 
     public RealTimeMatching() {
         roomEnterFlag = false;
@@ -119,9 +120,9 @@ public class RealTimeMatching {
                                                         list = new ArrayList<>(idList.keySet());
                                                         //root.child("chats").child(m_roomTitle).
 
-                                                        root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("detailedInterests").setValue(m_DetailedInterests);
+                                                        root.child("chats").child(m_roomTitle + " " + list.get(0)).child("detailedInterests").setValue(m_DetailedInterests);
                                                         for(int i=0; i<list.size(); i++){
-                                                            root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child(list.get(i).toString()).setValue("T");
+                                                            root.child("chats").child(m_roomTitle + " " + list.get(0)).child(list.get(i).toString()).setValue("T");
                                                         }
 
                                                         Calendar rightNow = Calendar.getInstance();
