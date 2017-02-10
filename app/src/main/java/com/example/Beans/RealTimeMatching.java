@@ -100,6 +100,8 @@ public class RealTimeMatching {
                 for (DataSnapshot tmpMatchingGroupIdChild : dataSnapshot.getChildren()) {
                     if (!tmpMatchingGroupIdChild.getKey().equals(m_Student.getId())) {
                         m_otherPersonId = tmpMatchingGroupIdChild.getKey();
+                        m_otherPersonIdDetailedTnterests = "";
+                        m_otherPersonIdChattingNumber = 0;
                         reFindIdList.get(m_otherPersonId);
                         reFindIDArrayList = new ArrayList<>(reFindIdList.keySet());
 
@@ -138,7 +140,7 @@ public class RealTimeMatching {
                                                         idList.put(idChild.getKey(), idChild.getKey());
                                                     }
 
-                                                    if(idList.size() == Integer.parseInt(m_ChattingNumber)){
+                                                    if(roomPeopleNumber == Integer.parseInt(m_ChattingNumber)){
                                                         list = new ArrayList<>(idList.keySet());
                                                         //root.child("chats").child(m_roomTitle).
 
