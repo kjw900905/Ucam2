@@ -25,87 +25,67 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
 public class MyChatRoomFragment extends Fragment {
-
-    private EditText room_name;
-
     private ListView listView;
-    private ArrayAdapter<String> arrayAdapter;
-    private ArrayList<String> list_of_rooms = new ArrayList<>();
+    private MyChatRoomArrayAdapter adapter;
+    private ArrayList<RoomInfo> list_of_rooms = new ArrayList<RoomInfo>();
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference();
     Student mStudent;
-
-    private String m_detailedInterests;                //관심분야
-    private String m_chattingNumber;
-    private String m_makeRoomFlag;
 
     public MyChatRoomFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
         mStudent = (Student)getArguments().getSerializable("myInfo");
 
-        //Toast.makeText(getActivity(), m_detailedInterests+m_chattingNumber, Toast.LENGTH_SHORT).show();
-
-        //room_name = (EditText) view.findViewById(R.id.room_name_edittext);
+        adapter = new MyChatRoomArrayAdapter(getContext(), R.layout.list_item_chat_room, list_of_rooms);
         listView = (ListView) view.findViewById(R.id.listViewConv);
+        listView.setAdapter(adapter);
 
-        arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list_of_rooms);
+        root.child("temp").setValue("T");
 
-        listView.setAdapter(arrayAdapter);
+        Toast.makeText(getContext(), "채팅방 확인", Toast.LENGTH_SHORT).show();
 
-        //request_user_name();
-
-        /*add_room.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Map<String, Object> map = new HashMap<String, Object>();
-                //map.put(room_name.getText().toString(), "");
-                //root.updateChildren(map);
-                root.child("chats").child(room_name.getText().toString()).child("title").setValue(" ");
-                root.child("chats").child(room_name.getText().toString()).child("memberNumber").setValue(" ");
-            }
-        });*/
-
-        root.addValueEventListener(new ValueEventListener() {
+        root.child("chats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                /*Set<String> set = new HashSet<String>();
-                Iterator i = dataSnapshot.getChildren().iterator();
-
-                while(i.hasNext()) {
-                    set.add(((DataSnapshot)i.next()).getValue().toString());
-                }
-                list_of_rooms.clear();
-                list_of_rooms.addAll(set);*/
-
                 list_of_rooms.clear();
 
-                for(DataSnapshot child : dataSnapshot.getChildren()){
-                    if(child.getKey().equals("chats")) {
-                        for (DataSnapshot child2 : child.getChildren()) {
-                            if(child.getKey().equals("users")){
+                String currentMemberNumber = "";
+                String detailedInterests = "";
+                String limitMemberNumber = "";
+                String time = "";
+                String title = "";
 
+                for(DataSnapshot chatsChild : dataSnapshot.getChildren()) {
+                    for(DataSnapshot roomChild : chatsChild.getChildren()) {
+                        if(roomChild.hasChild(mStudent.getId())) {
+                            if(roomChild.getKey().equals("currentMemberNumber")) {
+                                currentMemberNumber = roomChild.getValue().toString();
                             }
-                            list_of_rooms.add(child2.getKey());
+                            if(roomChild.getKey().equals("detailedInterests")) {
+                                detailedInterests = roomChild.getValue().toString();
+                            }
+                            if(roomChild.getKey().equals("limitMemberNumber")) {
+                                limitMemberNumber = roomChild.getValue().toString();
+                            }
+                            if(roomChild.getKey().equals("time")) {
+                                time = roomChild.getValue().toString();
+                            }
+                            if(roomChild.getKey().equals("title")) {
+                                title = roomChild.getValue().toString();
+                            }
+
+                            list_of_rooms.add(new RoomInfo(title, detailedInterests, limitMemberNumber, time, currentMemberNumber));
                         }
                     }
                 }
 
-                arrayAdapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -115,50 +95,96 @@ public class MyChatRoomFragment extends Fragment {
         });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            RoomInfo r;
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /* TODO: 일단 채팅은 보류
-                Intent intent = new Intent(getActivity(), Chat_Room.class);
-                intent.putExtra("room_name", ((TextView)view).getText().toString());
-                intent.putExtra("user_name", name);
-                startActivity(intent);
-                */
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
-                intent.putExtra("user_id", mStudent.getId());
-                intent.putExtra("room_name", ((TextView)view).getText().toString());
-                root.child("users").child(mStudent.getId()).child("roomName").setValue(m_detailedInterests);
-                startActivity(intent);
+                r = list_of_rooms.get(position);
+
+                // root/chats 이벤트 설정
+                root.child("chats").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot chatsChild : dataSnapshot.getChildren()) {
+                            if (chatsChild.getKey().equals(r.getM_roomTitle())) {
+                                if(chatsChild.hasChild(mStudent.getId())) {
+                                    Intent intent = new Intent(getActivity(), ChatActivity.class);
+                                    intent.putExtra("user_id", mStudent.getId());
+                                    intent.putExtra("room_name", r.getM_roomTitle());
+                                    startActivity(intent);
+                                } else {
+                                    int limitMemberNumber = Integer.parseInt(chatsChild.child("limitMemberNumber").getValue().toString());
+                                    int currentMemberNumber = Integer.parseInt(chatsChild.child("currentMemberNumber").getValue().toString());
+
+                                    // 현재 인원수가 최대 인원수보다 적으면 채팅방에 입장
+                                    if (currentMemberNumber < limitMemberNumber) {
+                                        currentMemberNumber++;
+                                        r.setM_roomCurrentMemberNumber(String.valueOf(currentMemberNumber));
+                                        root.child("chats").child(r.getM_roomTitle()).child("currentMemberNumber").setValue(currentMemberNumber);
+                                        root.child("chats").child(r.getM_roomTitle()).child(mStudent.getId()).setValue("T");
+                                        root.child("member").child(r.getM_roomTitle()).child(mStudent.getId()).setValue("T");
+
+                                        Intent intent = new Intent(getActivity(), ChatActivity.class);
+                                        intent.putExtra("user_id", mStudent.getId());
+                                        intent.putExtra("room_name", r.getM_roomTitle());
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(getContext(), "인원이 다 찼습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                adapter.notifyDataSetChanged();
             }
         });
 
         return view;
     }
 
-    /*
-    private void request_user_name() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Enter name:");
+    private class MyChatRoomArrayAdapter extends ArrayAdapter<RoomInfo> {
+        private Context context;
+        private int textViewResourceId;
+        private ArrayList<RoomInfo> items;
 
-        final EditText input_field = new EditText(getActivity());
+        public MyChatRoomArrayAdapter(Context context, int textViewResourceId, ArrayList<RoomInfo> items) {
+            super(context, textViewResourceId, items);
+            this.context = context;
+            this.textViewResourceId = textViewResourceId;
+            this.items = items;
+        }
 
-        builder.setView(input_field);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                name = input_field.getText().toString();
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = convertView;
+
+            if (view == null) {
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.list_item_chat_room, null);
             }
-        });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-                //request_user_name();
+            RoomInfo r = items.get(position);
+
+            if (r != null) {
+                TextView text_room_time = (TextView) view.findViewById(R.id.text_room_time);
+                TextView text_room_interests = (TextView) view.findViewById(R.id.text_room_interests);
+                TextView text_room_title = (TextView) view.findViewById(R.id.text_room_title);
+                TextView text_room_num_people = (TextView) view.findViewById(R.id.text_room_num_people);
+
+                text_room_time.setText(r.getM_roomTime());
+                text_room_interests.setText(r.getM_roomInterest());
+                text_room_title.setText(r.getM_roomTitle());
+                text_room_num_people.setText(r.getM_roomCurrentMemberNumber() + "/" + r.getM_roomLimitMemberNumber());
             }
-        });
 
-        builder.show();
+            return view;
+        }
     }
-    */
-
 }
