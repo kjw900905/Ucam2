@@ -136,7 +136,10 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("title").setValue(m_roomTitle + " " + list.get(0));
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("time").setValue(strDate);
 
-                                                        roomEnterFlag = true;
+                                                        Intent intent = new Intent(m_activity, ChatActivity.class);
+                                                        intent.putExtra("user_id", m_Student.getId());
+                                                        intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
+                                                        m_activity.startActivity(intent);
 
                                                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                                         Query querytmpConditionEquals = ref.child("tmpConditionEquals").child(m_roomTitle);
@@ -174,13 +177,7 @@ public class RealTimeMatching {
                                                     }
                                                 }
                                             }
-                                            if(roomEnterFlag) {
-                                                Intent intent = new Intent(m_activity, ChatActivity.class);
-                                                intent.putExtra("user_id", m_Student.getId());
-                                                intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
-                                                m_activity.startActivity(intent);
-                                                Log.e("ss", "ss");
-                                            }
+
                                         }
 
                                         @Override
