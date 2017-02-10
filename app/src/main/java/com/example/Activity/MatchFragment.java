@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.Beans.RealTimeMatching;
 import com.example.Beans.Student;
 import com.example.Beans.Variable;
 import com.google.firebase.database.DataSnapshot;
@@ -74,6 +75,8 @@ public class MatchFragment extends Fragment {
 
     private boolean isFindFlag, isTitleExist, isRoomExist;
 
+    private RealTimeMatching realTimeMatching;
+
     public void MatchFragment() {
         // null
     }
@@ -94,6 +97,8 @@ public class MatchFragment extends Fragment {
         edtDetailInterests = (EditText) view.findViewById(R.id.edtDetailInterests); // "세부항목" EditText
         edtNumPeople = (EditText) view.findViewById(R.id.edtNumPeople); // "인원" EditText
         setRoomName = (EditText)view.findViewById(R.id.setRoomName);
+
+        realTimeMatching = new RealTimeMatching();
 
         makeRoomFlag = "N";
         mReservationFlag = "N";
@@ -307,6 +312,15 @@ public class MatchFragment extends Fragment {
 
     public void onClickMatchRoom() {
         //TODO: "매칭" 버튼 관련 코드 삽입
+
+        if(detailedInterests == null && chattingNumber == null ){
+            Toast.makeText(getContext(), "관심사항과 인원이 선택되지 않았습니다. 선택해주세요", Toast.LENGTH_SHORT).show();
+        }else {
+            realTimeMatching.setChattingNumber(chattingNumber);
+            realTimeMatching.setDetailedInterests(detailedInterests);
+            realTimeMatching.setStudent(mStudent);
+            realTimeMatching.insertMatchingId();
+        }
     }
 
     public void onClickParticipate(){
