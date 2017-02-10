@@ -123,6 +123,7 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("detailedInterests").setValue(m_DetailedInterests);
                                                         for(int i=0; i<list.size(); i++){
                                                             root.child("chats").child(m_roomTitle + " " + list.get(0)).child(list.get(i).toString()).setValue("T");
+                                                            root.child("member").child(m_roomTitle + " " + list.get(0)).child(list.get(i).toString()).setValue("T");
                                                         }
 
                                                         Calendar rightNow = Calendar.getInstance();
