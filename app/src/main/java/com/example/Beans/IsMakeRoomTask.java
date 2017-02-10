@@ -41,8 +41,10 @@ public class IsMakeRoomTask extends AsyncTask<String, Void, String> {
     private String m_DetailedInterests;
     private Student mStudent;
     private boolean isFindFlag;
+
     private EditText m_edtNumPeople;
     private EditText m_setRoomName;
+
     private boolean isTitleExist, isRoomExist;
     private String mReservationFlag;
     private String mRoomName;

@@ -19,13 +19,19 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
     private String m_ChattingNumber;
     private String m_DetailedInterests;
     private Student mStudent;
+    private EditText m_EdtInterests; // "관심분야" EditText
+    private EditText m_EdtDetailInterests; // "세부항목" EditText
+    private EditText m_EdtNumPeople; // "인원" EditText
 
-    public MatchingLodingTaskBar(Activity activity, String chattingNumber, String detailedInterests, Student student){
+    public MatchingLodingTaskBar(Activity activity, String chattingNumber, String detailedInterests, Student student, EditText edtInterests, EditText edtDetailInterests, EditText edtNumPeople){
         m_activity = activity;
         realTimeMatching = new RealTimeMatching();
         m_ChattingNumber = chattingNumber;
         m_DetailedInterests = detailedInterests;
         mStudent = student;
+        m_EdtInterests = edtInterests;
+        m_EdtDetailInterests = edtDetailInterests;
+        m_EdtNumPeople = edtNumPeople;
 
     }
 
@@ -34,12 +40,18 @@ public class MatchingLodingTaskBar extends AsyncTask<Void, Void, Void>{
         //Log.e("sibal", "sibal");
         super.onPreExecute();
         dialog = new ProgressDialog(m_activity);
-        dialog.setMessage("Loading...");
+        dialog.setMessage("매칭중입니다...");
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which){
                 Toast.makeText(m_activity, "취소됨", Toast.LENGTH_SHORT).show();
+                RemoveMyTmpGroupId removeMyTmpGroupId = new RemoveMyTmpGroupId(mStudent, m_ChattingNumber, m_DetailedInterests);
+                removeMyTmpGroupId.remove();
+                m_EdtInterests.setText("");
+                m_EdtDetailInterests.setText("");
+                m_EdtNumPeople.setText("");
+
             }
         });
         dialog.show();

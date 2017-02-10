@@ -297,7 +297,7 @@ public class MatchFragment extends Fragment {
         if(detailedInterests == null && chattingNumber == null ){
             Toast.makeText(getContext(), "관심사항과 인원이 선택되지 않았습니다. 선택해주세요", Toast.LENGTH_SHORT).show();
         }else {
-            IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent);
+            IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent, edtInterests, edtDetailInterests, edtNumPeople);
             isMatchingRoomTask.execute();
 
             edtInterests.setText("");
