@@ -132,12 +132,13 @@ public class RealTimeMatching {
                                             for (DataSnapshot tmpConditionEqualsChild : dataSnapshot.getChildren()) {
                                                 if (tmpConditionEqualsChild.getKey().equals(m_roomTitle)) {
                                                     roomPeopleNumber = (int)tmpConditionEqualsChild.getChildrenCount();
+                                                    Log.e("인원", ""+roomPeopleNumber);
 
                                                     for(DataSnapshot idChild : tmpConditionEqualsChild.getChildren()){
                                                         idList.put(idChild.getKey(), idChild.getKey());
                                                     }
 
-                                                    if(roomPeopleNumber == m_otherPersonIdChattingNumber){
+                                                    if(roomPeopleNumber == Integer.parseInt(m_ChattingNumber)){
                                                         list = new ArrayList<>(idList.keySet());
                                                         //root.child("chats").child(m_roomTitle).
 
