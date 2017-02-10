@@ -4,9 +4,12 @@ package com.example.Beans;
  * Created by kjw90 on 2017-02-10.
  */
 
+import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.Activity.ChatActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +36,7 @@ public class RealTimeMatching {
     private int roomPeopleNumber;
     private HashMap<String, String> idList;
     private ArrayList list;
+    private Activity m_activity;
 
     public RealTimeMatching() {
         idList = new HashMap<String, String>();
@@ -60,6 +64,14 @@ public class RealTimeMatching {
 
     public Student getStudent() {
         return m_Student;
+    }
+
+    public void setActivity(Activity activity){
+        m_activity = activity;
+    }
+
+    public Activity getActivity(){
+        return m_activity;
     }
 
     public void insertMatchingId() {
@@ -120,6 +132,11 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("limitMemberNumber").setValue(list.size());
                                                         root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("title").setValue(m_roomTitle + " " + m_Student.getId());
                                                         root.child("chats").child(m_roomTitle + " " + m_Student.getId()).child("time").setValue(strDate);
+
+                                                        Intent intent = new Intent(m_activity, ChatActivity.class);
+                                                        intent.putExtra("user_id", m_Student.getId());
+                                                        intent.putExtra("room_name", m_roomTitle);
+                                                        m_activity.startActivity(intent);
 
                                                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                                         Query querytmpConditionEquals = ref.child("tmpConditionEquals").child(m_roomTitle);

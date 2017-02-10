@@ -319,6 +319,7 @@ public class MatchFragment extends Fragment {
             realTimeMatching.setChattingNumber(chattingNumber);
             realTimeMatching.setDetailedInterests(detailedInterests);
             realTimeMatching.setStudent(mStudent);
+            realTimeMatching.setActivity(this.getActivity());
             realTimeMatching.insertMatchingId();
         }
     }
