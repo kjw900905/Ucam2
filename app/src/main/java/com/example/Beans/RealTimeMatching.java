@@ -164,6 +164,7 @@ public class RealTimeMatching {
                                                                 for(DataSnapshot chatsSnapshot : dataSnapshot.getChildren()) {
                                                                     if(chatsSnapshot.getKey().equals(idList.get(chatsSnapshot.getKey()))){
                                                                         chatsSnapshot.getRef().removeValue();
+                                                                        idList.remove(chatsSnapshot.getKey());
                                                                     }
                                                                 }
                                                             }
@@ -181,11 +182,11 @@ public class RealTimeMatching {
                                                         m_roomTitle = "";
                                                         roomPeopleNumber = 0;
                                                         m_DetailedInterests = "";
-                                                        idList.clear();
                                                         list.clear();
 
                                                         Log.e("zkzk", m_DetailedInterests);
                                                         Log.e("zaza", m_ChattingNumber);
+                                                        Log.e("zcvb2", null);
                                                         Log.e("zcvb", "ssssibal");
                                                     }
                                                 }
