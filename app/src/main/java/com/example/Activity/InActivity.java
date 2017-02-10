@@ -195,13 +195,13 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             bundle.putSerializable("myInfo", myInfo);
             setProfileImageFragment.setArguments(bundle);
         } else if (id == R.id.nav_chat) {
-            ChatRoomFragment chatRoomFragment = new ChatRoomFragment();
+            MyChatRoomFragment myChatRoomFragment = new MyChatRoomFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_in, chatRoomFragment).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_in, myChatRoomFragment).commit();
 
             Bundle bundle = new Bundle(1);
             bundle.putSerializable("myInfo", myInfo);
-            chatRoomFragment.setArguments(bundle);
+            myChatRoomFragment.setArguments(bundle);
         }else if (id == R.id.nav_set_table_color) {
             /*
             SetUpFragment setUpFragment = new SetUpFragment();
