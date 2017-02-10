@@ -145,10 +145,6 @@ public class RealTimeMatching {
                                                         SimpleDateFormat df = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
                                                         String strDate = df.format(date);
 
-                                                        m_EdtInterests.setText("");
-                                                        m_EdtDetailInterests.setText("");
-                                                        m_EdtNumPeople.setText("");
-
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("isEnterRoom").setValue("F");
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("currentMemberNumber").setValue(list.size());
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("limitMemberNumber").setValue(list.size());

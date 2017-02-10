@@ -207,6 +207,7 @@ public class MatchFragment extends Fragment {
                 // [이전에 선택한 것과 다른것을 선택하는 경우(이전 index와 현재 index가 다른 경우)]
                 // 1. "관심분야" EditText value 변경, "세부항목" EditText value 초기화, "인원" EditText value 초기화
                 // 2. 이전 index와 현재 index를 일치시킨다.
+
                 if (m_o_selectInterests != m_selectInterests) {
                     String[] interests = getResources().getStringArray(R.array.Interests); // app/res/values/strings.xml의 <string-array name="Interests">
                     edtInterests.setText(interests[m_selectInterests]); // "관심분야" EditText value 변경
@@ -297,6 +298,10 @@ public class MatchFragment extends Fragment {
         }else {
             IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent, edtInterests, edtDetailInterests, edtNumPeople);
             isMatchingRoomTask.execute();
+
+            edtInterests.setText("");
+            edtDetailInterests.setText("");
+            edtNumPeople.setText("");
         }
     }
 
@@ -366,7 +371,7 @@ public class MatchFragment extends Fragment {
     // 체크 표시가 되어 있는 항목의 value를 구하기 위해 사용하는 메소드
     public void getCheckedValue(String[] detailInterests, boolean[] checkDetailInterests) {
         String result = ""; // EditText에 넣어주기 위한 String
-        detailedInterests = "";
+        //detailedInterests = "";
         int numCheckedValue = 0; // 체크되어 있는 항목의 개수
 
         // 체크되어 있는 항목이 몇개인지 확인
@@ -389,6 +394,7 @@ public class MatchFragment extends Fragment {
 
         edtDetailInterests.setText(result); // "세부항목" EditText value 변경
         detailedInterests += (" " + result);
+        //detailedInterests = "";
         edtNumPeople.setText(""); // "인원" EditText value 초기화
     }
 
@@ -493,5 +499,12 @@ public class MatchFragment extends Fragment {
                 makeRoomFlag);
 
         isMakeRoomTask.execute();
+
+        edtInterests.setText("");
+        edtDetailInterests.setText("");
+        edtNumPeople.setText("");
+
+        //detailedInterests = "";
+        //chattingNumber = "";
     }
 }
