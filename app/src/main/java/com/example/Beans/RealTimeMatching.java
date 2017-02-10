@@ -140,11 +140,13 @@ public class RealTimeMatching {
                                                         intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
                                                         m_activity.startActivity(intent);
 
+                                                        m_ChattingNumber = "";
                                                         m_otherPersonIdDetailedTnterests = "";
                                                         m_otherPersonIdChattingNumber = 0;
                                                         m_otherPersonId = "";
                                                         m_roomTitle = "";
-                                                         roomPeopleNumber = 0;
+                                                        roomPeopleNumber = 0;
+                                                        m_DetailedInterests = "";
                                                         idList.clear();
                                                         list.clear();
 
