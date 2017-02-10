@@ -81,7 +81,7 @@ public class RealTimeMatching {
         root.child("tmpMatchingGroupId").child(m_Student.getId()).child("detailedInterests").setValue(m_DetailedInterests);
         root.child("tmpMatchingGroupId").child(m_Student.getId()).child("chattingNumber").setValue(m_ChattingNumber);
 
-        root.child("tmpMatchingGroupId").addListenerForSingleValueEvent(new ValueEventListener() {
+        root.child("tmpMatchingGroupId").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //root.child("temp").setValue("T");
@@ -137,6 +137,7 @@ public class RealTimeMatching {
                                                         root.child("chats").child(m_roomTitle + " " + list.get(0)).child("time").setValue(strDate);
 
                                                         Intent intent = new Intent(m_activity, ChatActivity.class);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP );
                                                         intent.putExtra("user_id", m_Student.getId());
                                                         intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
                                                         m_activity.startActivity(intent);
