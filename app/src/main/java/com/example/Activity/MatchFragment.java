@@ -355,6 +355,7 @@ public class MatchFragment extends Fragment {
     // 체크 표시가 되어 있는 항목의 value를 구하기 위해 사용하는 메소드
     public void getCheckedValue(String[] detailInterests, boolean[] checkDetailInterests) {
         String result = ""; // EditText에 넣어주기 위한 String
+        detailedInterests = "";
         int numCheckedValue = 0; // 체크되어 있는 항목의 개수
 
         // 체크되어 있는 항목이 몇개인지 확인
