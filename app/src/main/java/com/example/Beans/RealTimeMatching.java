@@ -140,19 +140,6 @@ public class RealTimeMatching {
                                                         intent.putExtra("room_name", m_roomTitle + " " + list.get(0));
                                                         m_activity.startActivity(intent);
 
-                                                        m_ChattingNumber = "";
-                                                        m_otherPersonIdDetailedTnterests = "";
-                                                        m_otherPersonIdChattingNumber = 0;
-                                                        m_otherPersonId = "";
-                                                        m_roomTitle = "";
-                                                        roomPeopleNumber = 0;
-                                                        m_DetailedInterests = "";
-                                                        idList.clear();
-                                                        list.clear();
-
-                                                        Log.e("zkzk", m_DetailedInterests);
-                                                        Log.e("zaza", m_ChattingNumber);
-
                                                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                                         Query querytmpConditionEquals = ref.child("tmpConditionEquals").child(m_roomTitle);
                                                         Query querytmpMatchingGroupId = ref.child("tmpMatchingGroupId");
@@ -186,6 +173,20 @@ public class RealTimeMatching {
 
                                                             }
                                                         });
+
+                                                        m_ChattingNumber = "";
+                                                        m_otherPersonIdDetailedTnterests = "";
+                                                        m_otherPersonIdChattingNumber = 0;
+                                                        m_otherPersonId = "";
+                                                        m_roomTitle = "";
+                                                        roomPeopleNumber = 0;
+                                                        m_DetailedInterests = "";
+                                                        idList.clear();
+                                                        list.clear();
+
+                                                        Log.e("zkzk", m_DetailedInterests);
+                                                        Log.e("zaza", m_ChattingNumber);
+                                                        Log.e("zcvb", "ssssibal");
                                                     }
                                                 }
                                             }
