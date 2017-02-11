@@ -161,10 +161,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             Bundle bundle = new Bundle(1);
             bundle.putSerializable("myInfo", myInfo);
             timeTableFragment.setArguments(bundle);
-
-            //DrawTimeTableFragment drawTimeTableFragment = new DrawTimeTableFragment();
-            //FragmentManager fragmentManager = getSupportFragmentManager();
-            //fragmentManager.beginTransaction().replace(R.id.content_in, drawTimeTableFragment).addToBackStack(null).commit();
+            
         } else if (id == R.id.nav_edit_mem_info) {
             EditMemInfoFragment editMemInfoFragment = new EditMemInfoFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -181,18 +178,6 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             Bundle bundle = new Bundle(1);
             bundle.putSerializable("myInfo", myInfo);
             matchFragment.setArguments(bundle);
-        } else if (id == R.id.nav_appointment) {
-
-        } /*else if (id == R.id.nav_preference) {
-
-        }*/ else if (id == R.id.nav_set_profile_image) {
-            SetProfileImageFragment setProfileImageFragment = new SetProfileImageFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_in, setProfileImageFragment).addToBackStack(null).commit();
-
-            Bundle bundle = new Bundle(1);
-            bundle.putSerializable("myInfo", myInfo);
-            setProfileImageFragment.setArguments(bundle);
         } else if (id == R.id.nav_chat) {
             MyChatRoomFragment myChatRoomFragment = new MyChatRoomFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -201,17 +186,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             Bundle bundle = new Bundle(1);
             bundle.putSerializable("myInfo", myInfo);
             myChatRoomFragment.setArguments(bundle);
-        }/*else if (id == R.id.nav_set_table_color) {
-
-            SetUpFragment setUpFragment = new SetUpFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_in, setUpFragment).addToBackStack(null).commit();
-
-            Bundle bundle = new Bundle(1);
-            bundle.putSerializable("myInfo", myInfo);
-            setUpFragment.setArguments(bundle);
-
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
