@@ -424,6 +424,7 @@ public class ChatRoomFragment extends Fragment {
                                     currentMemberNumber --;
                                     root.child("chats").child(r.getM_roomTitle()).child("currentMemberNumber").setValue(String.valueOf(currentMemberNumber));
                                     r.setM_roomCurrentMemberNumber(String.valueOf(currentMemberNumber));
+                                    list_of_rooms.remove(r);
                                 }
                             }
 
