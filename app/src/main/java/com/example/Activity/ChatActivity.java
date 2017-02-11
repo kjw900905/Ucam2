@@ -102,7 +102,7 @@ public class ChatActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listMember);
         listview.setAdapter(adapter2);
 
-        mData.addListenerForSingleValueEvent(new ValueEventListener() {
+        mData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
