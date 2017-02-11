@@ -37,15 +37,12 @@ public class RealTimeMatching {
     private String m_roomTitle;
     private int roomPeopleNumber;
     private HashMap<String, String> idList;
-    private HashMap<String, String> reFindIdList;
     private ArrayList list;
-    private ArrayList reFindIDArrayList;
     private Activity m_activity;
     private ProgressDialog m_progressDialog;
 
 
     public RealTimeMatching() {
-        reFindIdList = new HashMap<String, String>();
         idList = new HashMap<String, String>();
     }
 
@@ -103,15 +100,6 @@ public class RealTimeMatching {
                         m_otherPersonIdDetailedTnterests = "";
                         m_otherPersonIdChattingNumber = 0;
                         m_otherPersonId = tmpMatchingGroupIdChild.getKey();
-                        reFindIdList.get(m_otherPersonId);
-                        reFindIDArrayList = new ArrayList<>(reFindIdList.keySet());
-
-                        for(int i=0; i<reFindIDArrayList.size(); i++){
-                            if(!reFindIDArrayList.get(i).toString().equals(m_otherPersonId)){
-                                reFindIDArrayList.add(m_otherPersonId);
-                            }
-                            Log.e("sibal", reFindIDArrayList.get(i).toString());
-                        }
 
                         for (DataSnapshot idChild : tmpMatchingGroupIdChild.getChildren()) {
                             if (idChild.getKey().equals("detailedInterests")) {
