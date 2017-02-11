@@ -1,9 +1,11 @@
 package com.example.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -83,7 +86,7 @@ public class MyChatRoomFragment extends Fragment {
         root.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(list_of_rooms.isEmpty()) {
+                if (list_of_rooms.isEmpty()) {
                     Toast.makeText(getContext(), "현재 속해 있는 채팅방이 없습니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -106,6 +109,115 @@ public class MyChatRoomFragment extends Fragment {
                 intent.putExtra("user_id", mStudent.getId());
                 intent.putExtra("room_name", r.getM_roomTitle());
                 startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            RoomInfo r;
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("방을 삭제하시겠습니까?");
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        root.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (Integer.parseInt(dataSnapshot.child("chats").child(r.getM_roomTitle()).child("currentMemberNumber").getValue().toString()) == 1) {
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                                    Query deleteChatsQuery = ref.child("chats").child(r.getM_roomTitle());
+                                    Query deleteMemberQuery = ref.child("member").child(r.getM_roomTitle());
+                                    Query deleteMessageQuery = ref.child("message").child(r.getM_roomTitle());
+
+                                    deleteChatsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    deleteMemberQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    deleteMessageQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    //Toast.makeText(getContext(), position, Toast.LENGTH_SHORT).show();
+
+                                    list_of_rooms.remove(r);
+                                } else {
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                                    Query deleteChatsQuery = ref.child("chats").child(r.getM_roomTitle()).child(mStudent.getId());
+                                    Query deleteMemberQuery = ref.child("member").child(r.getM_roomTitle()).child(mStudent.getId());
+
+                                    deleteChatsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    deleteMemberQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            dataSnapshot.getRef().removeValue();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    int currentMemberNumber = Integer.parseInt(dataSnapshot.child("chats").child(r.getM_roomTitle()).child("currentMemberNumber").getValue().toString());
+                                    currentMemberNumber--;
+                                    root.child("chats").child(r.getM_roomTitle()).child("currentMemberNumber").setValue(String.valueOf(currentMemberNumber));
+                                    r.setM_roomCurrentMemberNumber(String.valueOf(currentMemberNumber));
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("취소", null);
+                builder.show();
+
+                return true;
             }
         });
 
