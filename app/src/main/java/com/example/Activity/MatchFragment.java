@@ -294,9 +294,13 @@ public class MatchFragment extends Fragment {
     public void onClickMatchRoom() {
         //TODO: "매칭" 버튼 관련 코드 삽입
 
-        if(detailedInterests == null && chattingNumber == null ){
-            Toast.makeText(getContext(), "관심사항과 인원이 선택되지 않았습니다. 선택해주세요", Toast.LENGTH_SHORT).show();
-        }else {
+        if(edtInterests.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "관심분야를 선택해주세요.", Toast.LENGTH_SHORT).show();
+        } else if(edtDetailInterests.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "세부사항을 선택해주세요.", Toast.LENGTH_SHORT).show();
+        } else if(edtNumPeople.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "인원을 선택해주세요.", Toast.LENGTH_SHORT).show();
+        } else {
             IsMatchingRoomTask isMatchingRoomTask = new IsMatchingRoomTask(mStudent.getId(), getActivity(), chattingNumber, detailedInterests, mStudent, edtInterests, edtDetailInterests, edtNumPeople);
             isMatchingRoomTask.execute();
 

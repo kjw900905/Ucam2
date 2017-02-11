@@ -44,7 +44,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        myInfo = (Student)intent.getSerializableExtra("myInfo");
+        myInfo = (Student) intent.getSerializableExtra("myInfo");
 
         //SelectOne(myInfo.getId());
         ///positionArrayList = new ArrayList<String>();
@@ -78,7 +78,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
 */
     }
 
-    public void set_Schedule_Button(View v){
+    public void set_Schedule_Button(View v) {
         /* TODO: 스케줄 설정 액티비티로 전환
         *  신규 .java 파일과 연동
         * */
@@ -93,60 +93,59 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             //Skips one activity to go back twice
             FragmentManager fm = getSupportFragmentManager();
             int backStackNum = fm.getBackStackEntryCount();
-            if(backStackNum == 1) {
+            if (backStackNum == 1) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);     // 여기서 this는 Activity의 this
 
-// 여기서 부터는 알림창의 속성 설정
-                builder.setTitle("종료")        // 제목 설정
-                        .setMessage("UCam을 종료하시겠습니까?")        // 메세지 설정
-                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능 설정
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener(){
-                            // 확인 버튼 클릭시 설정
-                            public void onClick(DialogInterface dialog, int whichButton){
-                                finish();
-                                System.exit(0);
-                            }
-                        })
-                        .setNegativeButton("취소", new DialogInterface.OnClickListener(){
-                            // 취소 버튼 클릭시 설정
-                            public void onClick(DialogInterface dialog, int whichButton){
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog dialog = builder.create();    // 알림창 객체 생성
-                dialog.show();    // 알림창 띄우기
-            } else if(backStackNum > 1) {
-                for(int i = backStackNum; i > 2; i--) {
+                // 여기서 부터는 알림창의 속성 설정
+                builder.setTitle("종료"); // 제목 설정
+                builder.setMessage("UCam을 종료하시겠습니까?"); // 메세지 설정
+                builder.setCancelable(false); // 뒤로 버튼 클릭시 취소 가능 설정
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    // 확인 버튼 클릭시 설정
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        finish();
+                        System.exit(0);
+                    }
+                });
+                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    // 취소 버튼 클릭시 설정
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            } else if (backStackNum > 1) {
+                for (int i = backStackNum; i > 2; i--) {
                     fm.popBackStack();
                 }
                 super.onBackPressed();
             }
         }
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.in, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+    /*
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.in, menu);
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
-*/
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
+    */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -156,7 +155,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
 
         if (id == R.id.nav_time_table) {
             TimeTableFragment timeTableFragment = new TimeTableFragment();
-            FragmentManager manager= getSupportFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.content_in, timeTableFragment).addToBackStack(null).commit();
 
             Bundle bundle = new Bundle(1);
@@ -186,7 +185,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
 
         } /*else if (id == R.id.nav_preference) {
 
-        }*/else if (id == R.id.nav_set_profile_image) {
+        }*/ else if (id == R.id.nav_set_profile_image) {
             SetProfileImageFragment setProfileImageFragment = new SetProfileImageFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_in, setProfileImageFragment).addToBackStack(null).commit();
@@ -249,17 +248,17 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
                     String line = null;
 
                     // Read Server Response
-                    while((line = reader.readLine()) != null) {
+                    while ((line = reader.readLine()) != null) {
                         sb.append(line);
                         break;
                     }
                     return sb.toString().trim();
-                } catch(Exception exception) {
+                } catch (Exception exception) {
                     return new String(exception.getMessage());
                 }
             }
 
-            protected  void onPostExecute(String result) {
+            protected void onPostExecute(String result) {
                 myJSON = result;
                 check_ID_PW(toolbar);
             }
@@ -269,13 +268,13 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
         selectOneTask.execute(str_ID);
     }
 
-    public void check_ID_PW(Toolbar toolbar){
+    public void check_ID_PW(Toolbar toolbar) {
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
             person = jsonObj.getJSONArray("result");
-            if(person.isNull(0)) {
+            if (person.isNull(0)) {
                 NotDbMainFragment notdbMainFragment = new NotDbMainFragment();
-                FragmentManager manager= getSupportFragmentManager();
+                FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().add(R.id.content_in, notdbMainFragment).addToBackStack(null).commit();
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -290,7 +289,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             } else {
 
                 TimeTableFragment timeTableFragment = new TimeTableFragment();
-                FragmentManager manager= getSupportFragmentManager();
+                FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.content_in, timeTableFragment).addToBackStack(null).commit();
 
                 Bundle bundle = new Bundle(1);
@@ -307,7 +306,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
                 navigationView.setNavigationItemSelectedListener(this);
 
             }
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
     }

@@ -427,7 +427,7 @@ public class ChatRoomFragment extends Fragment {
                                         r.setM_roomCurrentMemberNumber(String.valueOf(currentMemberNumber));
                                     }
                                 } else {
-                                    Toast.makeText(getContext(), "사용자가 아닙니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "채팅방에 소속된 사용자가 아닙니다.", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
