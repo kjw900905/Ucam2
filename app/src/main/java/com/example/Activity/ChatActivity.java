@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.Beans.ChatMessage;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -109,31 +110,63 @@ public class ChatActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listMember);
         listview.setAdapter(adapter2);
 
-        root.addValueEventListener(new ValueEventListener() {
+        /*root.addValueEventListener(new ValueEventListener() {
+                                       @Override
+                                       public void onDataChange(DataSnapshot dataSnapshot) {
+                                           for (DataSnapshot child3 : dataSnapshot.child("member").child(room_name).getChildren()) {
+                                               if (!memberNameList.contains(child3.getKey())) {
+                                                   memberNameList.add(child3.getKey());
+                                               }
+                                           }
+                                           adapter2.notifyDataSetChanged();
+                                       }
+
+                                       @Override
+                                       public void onCancelled (DatabaseError databaseError) {
+
+                                       }
+                                   }
+        );*/
+
+        root.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child3 : dataSnapshot.child("member").child(room_name).getChildren()) {
-                    if (!memberNameList.contains(child3.getKey())) {
-                        memberNameList.add(child3.getKey());
-                    }
-                }
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String message = dataSnapshot.getValue(String.class);
+                memberNameList.add(message);
                 adapter2.notifyDataSetChanged();
             }
 
             @Override
-            public void onCancelled (DatabaseError databaseError) {
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-        }
-    );
 
-    //Toast.makeText(getApplicationContext(), "ss", Toast.LENGTH_SHORT).show();
-    //Toast.makeText(getApplicationContext(), "zz", Toast.LENGTH_SHORT).show();
-    //Toast.makeText(getApplicationContext(), memberNameList.toString(), Toast.LENGTH_SHORT).show();
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String message = dataSnapshot.getValue(String.class);
+                memberNameList.remove(message);
+                adapter2.notifyDataSetChanged();
+            }
 
-    //Snackbar.make(activity_chat, "Welcome " + user_id, Snackbar.LENGTH_SHORT).show();
-    displayChatMessage();
-}
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        //Toast.makeText(getApplicationContext(), "ss", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "zz", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), memberNameList.toString(), Toast.LENGTH_SHORT).show();
+
+        //Snackbar.make(activity_chat, "Welcome " + user_id, Snackbar.LENGTH_SHORT).show();
+        displayChatMessage();
+    }
 
     private void displayChatMessage() {
 
