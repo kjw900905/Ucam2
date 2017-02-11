@@ -165,7 +165,7 @@ public class ChatRoomFragment extends Fragment {
 
                     list_of_rooms.clear();
 
-                    Log.e("sibal", "detailflag");
+                    //Log.e("sibal", "detailflag");
 
                     String detailedInterests = "";
                     String memberLimitNumber = "";
@@ -328,6 +328,13 @@ public class ChatRoomFragment extends Fragment {
                 }
             });
         }
+
+        listView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             RoomInfo r;
