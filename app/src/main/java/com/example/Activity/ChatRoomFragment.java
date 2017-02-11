@@ -388,7 +388,9 @@ public class ChatRoomFragment extends Fragment {
                                         }
                                     });
 
-                                    list_of_rooms.remove(position);
+                                    //Toast.makeText(getContext(), position, Toast.LENGTH_SHORT).show();
+
+                                    list_of_rooms.remove(r);
                                 } else {
                                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                     Query deleteChatsQuery = ref.child("chats").child(r.getM_roomTitle()).child(mStudent.getId());
@@ -423,7 +425,6 @@ public class ChatRoomFragment extends Fragment {
                                     root.child("chats").child(r.getM_roomTitle()).child("currentMemberNumber").setValue(String.valueOf(currentMemberNumber));
                                     r.setM_roomCurrentMemberNumber(String.valueOf(currentMemberNumber));
                                 }
-
                             }
 
                             @Override
