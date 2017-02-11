@@ -161,7 +161,7 @@ public class InActivity extends AppCompatActivity implements NavigationView.OnNa
             Bundle bundle = new Bundle(1);
             bundle.putSerializable("myInfo", myInfo);
             timeTableFragment.setArguments(bundle);
-            
+
         } else if (id == R.id.nav_edit_mem_info) {
             EditMemInfoFragment editMemInfoFragment = new EditMemInfoFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();

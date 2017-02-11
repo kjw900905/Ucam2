@@ -128,10 +128,10 @@ public class ChatActivity extends AppCompatActivity {
                                    }
         );*/
 
-        root.addChildEventListener(new ChildEventListener() {
+        root.child("member").child(room_name).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String message = dataSnapshot.getValue(String.class);
+                String message = dataSnapshot.getKey();
                 memberNameList.add(message);
                 adapter2.notifyDataSetChanged();
             }
@@ -143,7 +143,7 @@ public class ChatActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                String message = dataSnapshot.getValue(String.class);
+                String message = dataSnapshot.getKey();
                 memberNameList.remove(message);
                 adapter2.notifyDataSetChanged();
             }
