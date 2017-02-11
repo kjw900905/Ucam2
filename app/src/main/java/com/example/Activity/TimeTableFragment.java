@@ -264,7 +264,6 @@ public class TimeTableFragment extends Fragment {
                         Query memberQuery = ref.child("member").child(roomName);
                         Query messageQuery = ref.child("message").child(roomName);
 
-
                         chatsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -432,7 +431,6 @@ public class TimeTableFragment extends Fragment {
                 String day = (String) params[1];
                 String time = (String) params[2];
                 String position = (String) params[3];
-
 
                 try {
                     String data = "";
