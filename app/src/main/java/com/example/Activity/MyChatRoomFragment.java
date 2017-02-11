@@ -102,25 +102,10 @@ public class MyChatRoomFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 r = list_of_rooms.get(position);
 
-                // root/chats 이벤트 설정
-                root.child("chats").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot chatsChild : dataSnapshot.getChildren()) {
-                            if (chatsChild.getKey().equals(r.getM_roomTitle())) {
-                                Intent intent = new Intent(getActivity(), ChatActivity.class);
-                                intent.putExtra("user_id", mStudent.getId());
-                                intent.putExtra("room_name", r.getM_roomTitle());
-                                startActivity(intent);
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                intent.putExtra("user_id", mStudent.getId());
+                intent.putExtra("room_name", r.getM_roomTitle());
+                startActivity(intent);
             }
         });
 
